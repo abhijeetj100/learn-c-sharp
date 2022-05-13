@@ -1,0 +1,15 @@
+C:\PLURALSIGHT\csharp\gradebook\src\GradeBook\bin\Debug\net6.0\GradeBook.exe
+C:\PLURALSIGHT\csharp\gradebook\src\GradeBook\bin\Debug\net6.0\GradeBook.deps.json
+C:\PLURALSIGHT\csharp\gradebook\src\GradeBook\bin\Debug\net6.0\GradeBook.runtimeconfig.json
+C:\PLURALSIGHT\csharp\gradebook\src\GradeBook\bin\Debug\net6.0\GradeBook.dll
+C:\PLURALSIGHT\csharp\gradebook\src\GradeBook\bin\Debug\net6.0\GradeBook.pdb
+C:\PLURALSIGHT\csharp\gradebook\src\GradeBook\obj\Debug\net6.0\GradeBook.csproj.AssemblyReference.cache
+C:\PLURALSIGHT\csharp\gradebook\src\GradeBook\obj\Debug\net6.0\GradeBook.GeneratedMSBuildEditorConfig.editorconfig
+C:\PLURALSIGHT\csharp\gradebook\src\GradeBook\obj\Debug\net6.0\GradeBook.AssemblyInfoInputs.cache
+C:\PLURALSIGHT\csharp\gradebook\src\GradeBook\obj\Debug\net6.0\GradeBook.AssemblyInfo.cs
+C:\PLURALSIGHT\csharp\gradebook\src\GradeBook\obj\Debug\net6.0\GradeBook.csproj.CoreCompileInputs.cache
+C:\PLURALSIGHT\csharp\gradebook\src\GradeBook\obj\Debug\net6.0\GradeBook.dll
+C:\PLURALSIGHT\csharp\gradebook\src\GradeBook\obj\Debug\net6.0\refint\GradeBook.dll
+C:\PLURALSIGHT\csharp\gradebook\src\GradeBook\obj\Debug\net6.0\GradeBook.pdb
+C:\PLURALSIGHT\csharp\gradebook\src\GradeBook\obj\Debug\net6.0\GradeBook.genruntimeconfig.cache
+C:\PLURALSIGHT\csharp\gradebook\src\GradeBook\obj\Debug\net6.0\ref\GradeBook.dll
