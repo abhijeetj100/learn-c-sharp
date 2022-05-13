@@ -27,10 +27,14 @@ jobs:
       run: |
         ls
     - name: Restore dependencies
+      working-directory: ./csharp/src/gradebook_v3/src/GradeBook/
       run: dotnet restore
     - name: Build
+      working-directory: ./csharp/src/gradebook_v3/src/GradeBook/
       run: dotnet build --no-restore
     - name: Test
+      working-directory: ./csharp/src/gradebook_v3/src/GradeBook/
       run: dotnet test --no-build --verbosity normal
     - name: Run
+      working-directory: ./csharp/src/gradebook_v3/src/GradeBook/
       run: dotnet run Abhijeet
