@@ -19,7 +19,10 @@ jobs:
         dotnet-version: 5.0.x
     - name: Change dir
       run: |
-        cd csharp/gradebook_v3/src/GradeBook/
+        cd csharp
+        cd gradebook_v3
+        cd src
+        cd GradeBook
     - name: Print dir elements
       run: |
         ls
