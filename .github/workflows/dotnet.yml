@@ -18,7 +18,11 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Change dir
-      run: cd csharp/gradebook_v3/src/GradeBook
+      run: |
+        cd csharp/gradebook_v3/src/GradeBook/
+    - name: Print dir elements
+      run: |
+        ls
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
