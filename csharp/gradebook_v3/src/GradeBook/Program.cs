@@ -14,8 +14,13 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
-            var book = new Book();
+            var book = new Book("Abhijeet's Grade Book");
+            var book2 = new Book("Abhijsdeet's Grade Book");
             book.AddGrade(89.1);
+            book.AddGrade(90.5);
+            book.AddGrade(77.5);
+            System.Console.WriteLine($"There are {Book.getInstacesCount()} instances of Book class");
+            // book.grades.Add(101);// not allowed due to abstraction
 
             // book.AddGrade(121.4);
 
@@ -31,14 +36,7 @@ namespace GradeBook
             var grades = new List<double>() { 12.7, 10.3, 6.11, 4.1 };
             grades.Add(56.1);
 
-            var result = 0.0;
-            foreach (var grade in grades)
-            {
-                result += grade;
-            }
-            result /= grades.Count;
-
-            Console.WriteLine($"The average grade is {result:N1}");
+            book.ShowStatistics();
             // // int x;
             // // x = (int)34.1;
             // double x = 34.1;
