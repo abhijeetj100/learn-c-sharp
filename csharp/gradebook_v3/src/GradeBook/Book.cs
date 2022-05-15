@@ -3,7 +3,8 @@ using System;
 
 namespace GradeBook
 {
-    class Book
+    // default access specifier: internal, this lass can only be used inside the same project
+    public class Book
     {
         // List<double> grades = new List<double>();
         List<double> grades;
