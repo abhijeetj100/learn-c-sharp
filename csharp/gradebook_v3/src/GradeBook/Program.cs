@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
+// # A solution file is used to list all the projest and test files in one place so that 
+// # .NET and vscode can understand with a single command which projects to run and
+// # which projects to test.
+
 // namespace GradeBook.Math
 namespace GradeBook
 {
@@ -14,6 +18,7 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
+            Console.WriteLine($"Welcome, {args[0]}!");
             var book = new Book("Abhijeet's Grade Book");
             var book2 = new Book("Abhijsdeet's Grade Book");
             book.AddGrade(89.1);
