@@ -3,11 +3,12 @@ using System;
 
 namespace GradeBook
 {
-    class Book
+    // default access specifier: internal, this class can only be used inside the same project
+    public class Book
     {
         // List<double> grades = new List<double>();
         List<double> grades;
-        private string name;
+        public string Name;
 
         static private int instanceCount = 0;
 
@@ -15,7 +16,7 @@ namespace GradeBook
         public Book(string name)
         {
             grades = new List<double>();
-            this.name = name;
+            Name = name;
             incrementCount();
         }
 
@@ -45,26 +46,37 @@ namespace GradeBook
 
         public void ShowStatistics()
         {
-            var result = 0.0;
-            var highGrade = double.MinValue; // smallest possible double value
-            var lowGrade = double.MaxValue; // smallest possible double value
+            var result = GetStatistics();
+
+            Console.WriteLine($"The average grade is {result.Average:N1}");
+            Console.WriteLine($"The highest grade is {result.High:N1}");
+            Console.WriteLine($"The lowest grade is {result.Low:N1}");
+        }
+
+        public Statistics GetStatistics(){
+            var result = new Statistics();
+            // by default, .NET runtime will set all the properties when class is
+            // intantiated for the time to 0 (bits off)
+            result.Average = 0.0;
+            result.High = double.MinValue;
+            result.Low = double.MaxValue;
+            // var result = 0.0;
+            // var highGrade = double.MinValue; // smallest possible double value
+            // var lowGrade = double.MaxValue; // smallest possible double value
             foreach (var grade in grades)
             {
                 // if (grade > highGrade)
                 // {
                 // highGrade = grade;
                 // OR 
-                highGrade = Math.Max(highGrade, grade);
-                lowGrade = Math.Min(lowGrade, grade);
+                result.High = Math.Max(result.High, grade);
+                result.Low = Math.Min(result.Low, grade);
 
                 // }
-                result += grade;
+                result.Average += grade;
             }
-            result /= grades.Count;
-
-            Console.WriteLine($"The average grade is {result:N1}");
-            Console.WriteLine($"The highest grade is {highGrade:N1}");
-            Console.WriteLine($"The lowest grade is {lowGrade:N1}");
+            result.Average /= grades.Count;
+            return result;
         }
     }
 }
