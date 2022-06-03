@@ -5,8 +5,60 @@ using Xunit;
 
 namespace GradeBook.Tests
 {
+    // class objects are ALWAYS "REFERENCE TYPES"/pointers
+    // struct objects are VALUE TYPES
     public class TypeTests
     {
+        // C# automatically takes care of "GARBAGE COLLECTION"
+        // after the scope of the object, the .net runtime detetcts that the object is not being used anymore,
+        // and cleans and frees up the momeory allocated and used by that class object.
+
+        
+        [Fact]
+        public void StringsBehaveLikeValueTypes()
+        {
+            // strings are immutable in C#
+            string name = "Scott";
+            var upper = MakeUppercase(name);
+
+            Assert.Equal("Scott", name); // fails, even if the string is a class i.e. reference types
+            Assert.Equal("SCOTT", upper);
+
+        }
+
+        private string MakeUppercase(string parameter)
+        {
+            return parameter.ToUpper();
+        }
+
+        [Fact]
+        public void Test1(){
+            var x = GetInt();
+            SetInt(x);
+            Assert.Equal(3, x);
+            SetInt(ref x);
+
+            Assert.NotEqual(3, x);
+            Assert.Equal(42, x);
+        }
+
+        private void SetInt(Int32 z)
+        {
+            // Double a = 2;// same as double
+            // DateTime dt = 
+            string s =""; // this is a class and not a struct
+            z = 42;
+        }
+
+        private void SetInt(ref int x)
+        {
+            x = 42;
+        }
+
+        private int GetInt()
+        {
+            return 3;
+        }
 
         [Fact]
         public void CSharpCanPassByRef()
@@ -15,7 +67,7 @@ namespace GradeBook.Tests
 
             // need to use "ref" while passing parameter by reference
             // can be changed to "out"
-            GetBookSetName(ref book1, "New Name");
+            GetBookSetName(out book1, "New Name");
             // this test proves that the only the value of book1
             //  is passed to the
             // function and not the reference to book1.
@@ -29,7 +81,7 @@ namespace GradeBook.Tests
         // OR "out", but there C# assumes that this object was never
         // initialized and you need to give some value to this parameter,
         // otherwise the C# compiler would give you error.
-        void GetBookSetName(ref Book book, string name)
+        void GetBookSetName(out Book book, string name)
         {
             //constructs a new Book object and replaces the value of 
             // memory location coming from the test which was copied from the 
