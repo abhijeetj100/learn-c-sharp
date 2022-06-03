@@ -36,5 +36,5 @@ jobs:
       working-directory: csharp/gradebook_v3/
       run: dotnet test --no-build --verbosity normal
     - name: Run
-      working-directory: csharp/gradebook_v3/
+      working-directory: csharp/gradebook_v3/src/GradeBook/
       run: dotnet run Abhijeet
