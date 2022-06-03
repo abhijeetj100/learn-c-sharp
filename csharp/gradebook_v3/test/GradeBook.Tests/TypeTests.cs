@@ -21,7 +21,7 @@ namespace GradeBook.Tests
             string name = "Scott";
             var upper = MakeUppercase(name);
 
-            Assert.Equal("Scott", name); // fails, even if the string is a class i.e. reference types
+            Assert.Equal("Scottt", name); // fails, even if the string is a class i.e. reference types
             Assert.Equal("SCOTT", upper);
 
         }
