@@ -34,14 +34,21 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       working-directory: csharp/gradebook_v3/
-      run: dotnet test --no-build --verbosity normal
-    - name: Generating XUNIT test report
-      uses: zyborg/dotnet-tests-report@v1
+      run: dotnet test --no-build --verbosity normal --logger="trx" --results-directory="Xunit-Test-Results"
+#     - name: Generating XUNIT test report
+#       uses: zyborg/dotnet-tests-report@v1
+#       with:
+#         project_path: csharp/gradebook_v3/test/GradeBook.Tests
+#         report_name: GradeBook Tests
+#         report_title: My GradeBook Tests
+#         github_token: ${{ secrets.GITHUB_TOKEN }}
+    # Using the trx-parser action
+    - name: Parse Trx files for XUNIT unit tests
+      uses: NasAmin/trx-parser@v0.1
+      id: trx-parser
       with:
-        project_path: csharp/gradebook_v3/test/GradeBook.Tests
-        report_name: GradeBook Tests
-        report_title: My GradeBook Tests
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        TRX_PATH: ${{ github.workspace }}/csharp/gradebook_v3/Xunit-Test-Results #This should be the path to your TRX files
+        REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Run
       working-directory: csharp/gradebook_v3/src/GradeBook/
       run: dotnet run Abhijeet
