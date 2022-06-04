@@ -7,7 +7,7 @@ namespace GradeBook
     public class Book
     {
         // List<double> grades = new List<double>();
-        List<double> grades;
+        public List<double> grades;
         public string Name;
 
         static private int instanceCount = 0;
@@ -32,7 +32,20 @@ namespace GradeBook
 
         public void AddGrade(double grade)
         {
-            grades.Add(grade);
+            // comparing float numbers is not advised
+            // instead, do
+            // ref: https://www.geeksforgeeks.org/problem-in-comparing-floating-point-numbers-and-how-to-compare-them-correctly/
+            // if(Math.Abs(grade-100) < 1e-9){
+
+            // }
+            if(grade <= 100 && grade >=0)
+            {
+                grades.Add(grade);
+            }
+            else
+            {
+                Console.WriteLine("Invalid Value");
+            }
         }
 
         public void PrintGrades()
