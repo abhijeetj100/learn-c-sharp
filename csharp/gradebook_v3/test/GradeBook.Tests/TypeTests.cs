@@ -5,10 +5,76 @@ using Xunit;
 
 namespace GradeBook.Tests
 {
+
+    // basically these are types for functions
+    public delegate string WriteLogDelegate(string logMessage);
+    public delegate int WriteSample(int number);
+
+
     // class objects are ALWAYS "REFERENCE TYPES"/pointers
     // struct objects are VALUE TYPES
     public class TypeTests
     {
+        int count = 0;
+        
+
+        [Fact]
+        public void WriteLogDelegateCanPointToMethod()
+        {
+            WriteLogDelegate log;
+
+            // ways to point delegate to a function, these delegates should match the function signatures(return type and paramters)
+            // name of the functions dont matter either
+            //1. Longhand
+            log = new WriteLogDelegate(ReturnMessage);
+            //or
+            log = ReturnMessage;
+
+            var result = log("Hello!");
+
+            Assert.Equal("Hello!", result);
+        }
+
+        [Fact]
+        public void TestsMultiDelegate()
+        {
+            WriteLogDelegate log = ReturnMessage;
+
+            //or
+            log += IncrementCount;
+            log += ReturnMessage;
+
+            // now all the functions added will be invoked with the same parameter.
+
+            var result = log("Hello!");
+
+            // Assert.Equal("Hello!", result);
+            Assert.Equal(3, count);
+
+            
+
+
+        }
+
+        string ReturnMessage(string message){
+            count++;
+            return message;
+        }
+
+        string IncrementCount(string message){
+            count++;
+            return message.ToLower();
+        }
+
+        int IncreaseByOne(int number){
+            return number+1;
+        }
+
+        int IncreaseByTwo(int number){
+            return number+2;
+        }
+
+
         // C# automatically takes care of "GARBAGE COLLECTION"
         // after the scope of the object, the .net runtime detetcts that the object is not being used anymore,
         // and cleans and frees up the momeory allocated and used by that class object.
