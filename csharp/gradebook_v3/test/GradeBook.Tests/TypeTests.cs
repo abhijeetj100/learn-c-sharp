@@ -46,7 +46,6 @@ namespace GradeBook.Tests
         {
             // Double a = 2;// same as double
             // DateTime dt = 
-            string s =""; // this is a class and not a struct
             z = 42;
         }
 
