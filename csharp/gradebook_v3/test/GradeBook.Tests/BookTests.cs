@@ -36,5 +36,16 @@ namespace GradeBook.Tests
             Assert.Equal(90.5, result.High, 1);
             Assert.Equal(77.5, result.Low, 1);
         }
+
+        [Fact]
+        public void AddGradeOnlyIfInRange()
+        {
+            var book = new Book("");
+
+            book.AddGrade(101);
+
+            Assert.Equal(0, book.grades.Count);
+
+        }
     }
 }
