@@ -47,6 +47,7 @@ jobs:
 #         github_token: ${{ secrets.GITHUB_TOKEN }}
     # Using the trx-parser action
     - name: Parse Trx files for XUNIT unit tests
+      if: always()
       uses: NasAmin/trx-parser@v0.2.0
       id: trx-parser
       with:
