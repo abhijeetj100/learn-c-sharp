@@ -39,7 +39,8 @@ namespace GradeBook
         public string Name
         {
             get;  // can only read name from outside the class
-            private set; // cannot set property from outside the class
+            // private set; // cannot set property from outside the class
+            set;
         }
 
         // readonly - can either initialize or set in a constructor
