@@ -20,14 +20,95 @@ namespace GradeBook
             incrementCount();
         }
 
+        public void GetInputFromUser()
+        {
+            // var inputsize = 0;
+            // Console.WriteLine("Enter the input size:");
+            // inputsize = int.Parse(Console.ReadLine());
+
+            // for (var index = 0; index < inputsize; index++)
+            // {
+            //     Console.WriteLine($"Enter grade no: {index+1}");
+            //     var grade = double.Parse(Console.ReadLine());
+            //     AddGrade(grade);
+            // }
+            // OR
+
+            while (true)
+            {
+                Console.WriteLine("Enter a grade or 'q' to quit");
+                var input = Console.ReadLine();
+
+                if (input == "q")
+                {
+                    break;
+                }
+
+                try
+                {
+                    var grade = double.Parse(input);
+                    AddGrade(grade);
+                }
+                catch(ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch(FormatException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                // catch(Exception ex)// this will catch ALL exceptions
+                // {
+                //     Console.WriteLine(ex.Message);
+                //     // throw; // in case we need to still throw the exceptions
+                // }
+                finally
+                {
+                    Console.WriteLine("**");
+                }
+
+
+            }
+
+            Console.WriteLine("Grades added successfully!");
+        }
+
         void incrementCount()
         {
             instanceCount++;
         }
 
-        static public int getInstacesCount()
+        static public int getInstancesCount()
         {
             return instanceCount;
+        }
+
+        public void AddLetterGrade(char letter)
+        {
+            switch (letter)
+            {
+                case 'A':
+                    AddGrade(90);
+                    break;
+                case 'B':
+                    AddGrade(80);
+                    break;
+                case 'C':
+                    AddGrade(70);
+                    break;
+                case 'D':
+                    AddGrade(60);
+                    break;
+                default:
+                    AddGrade(0);
+                    break;
+            }
+            // if(letter == 'A'){
+            //     AddGrade(90);
+            // }
+            // else if(letter == 'B'){
+            //     AddGrade(80);
+            // }
         }
 
         public void AddGrade(double grade)
@@ -38,13 +119,14 @@ namespace GradeBook
             // if(Math.Abs(grade-100) < 1e-9){
 
             // }
-            if(grade <= 100 && grade >=0)
+            if (grade <= 100 && grade >= 0)
             {
                 grades.Add(grade);
             }
             else
             {
                 Console.WriteLine("Invalid Value");
+                throw new ArgumentException($"Invalid grade: {nameof(grade)}");
             }
         }
 
@@ -64,9 +146,11 @@ namespace GradeBook
             Console.WriteLine($"The average grade is {result.Average:N1}");
             Console.WriteLine($"The highest grade is {result.High:N1}");
             Console.WriteLine($"The lowest grade is {result.Low:N1}");
+            Console.WriteLine($"The letter grade is {result.Letter}");
         }
 
-        public Statistics GetStatistics(){
+        public Statistics GetStatistics()
+        {
             var result = new Statistics();
             // by default, .NET runtime will set all the properties when class is
             // intantiated for the time to 0 (bits off)
@@ -78,6 +162,12 @@ namespace GradeBook
             // var lowGrade = double.MaxValue; // smallest possible double value
             foreach (var grade in grades)
             {
+                if (grade == 42.1)
+                {
+                    // break;
+                    continue;
+                    // goto done;
+                }
                 // if (grade > highGrade)
                 // {
                 // highGrade = grade;
@@ -88,7 +178,55 @@ namespace GradeBook
                 // }
                 result.Average += grade;
             }
+            // var index = 0;
+            // if (grades.Count > 0)
+            // {
+            //     do
+            //     {
+            //         result.High = Math.Max(result.High, grades[index]);
+            //         result.Low = Math.Min(result.Low, grades[index]);
+            //         result.Average += grades[index];
+            //         index += 1;
+            //     } while (index < grades.Count);
+            // }
+
+            // var index = 0;
+            // while (index < grades.Count)
+            // {
+            //     result.High = Math.Max(result.High, grades[index]);
+            //     result.Low = Math.Min(result.Low, grades[index]);
+            //     result.Average += grades[index];
+            //     index += 1;
+            // }
+
+            // for (var index = 0; index < grades.Count; index += 1)
+            // {
+            //     result.High = Math.Max(result.High, grades[index]);
+            //     result.Low = Math.Min(result.Low, grades[index]);
+            //     result.Average += grades[index];
+            // }
+
             result.Average /= grades.Count;
+
+            switch (result.Average)
+            {
+                case var d when d >= 90.0:
+                    result.Letter = 'A';
+                    break;
+                case var d when d >= 80.0:
+                    result.Letter = 'B';
+                    break;
+                case var d when d >= 70.0:
+                    result.Letter = 'C';
+                    break;
+                case var d when d >= 60.0:
+                    result.Letter = 'D';
+                    break;
+                default:
+                    result.Letter = 'F';
+                    break;
+            }
+            // done:
             return result;
         }
     }
