@@ -20,11 +20,11 @@ namespace GradeBook
         {
             Console.WriteLine($"Welcome, {args[0]}!");
             var book = new Book("Abhijeet's Grade Book");
-            book.GetInputFromUser();
+            // book.GetInputFromUser();
             var book2 = new Book("Abhijsdeet's Grade Book");
-            // book.AddGrade(89.1);
-            // book.AddGrade(90.5);
-            // book.AddGrade(77.5);
+            book.AddGrade(89.1);
+            book.AddGrade(90.5);
+            book.AddGrade(77.5);
             System.Console.WriteLine($"There are {Book.getInstancesCount()} instances of Book class");
             // book.grades.Add(101);// not allowed due to abstraction
 
