@@ -43,8 +43,18 @@ namespace GradeBook.Tests
         {
             var book = new Book("");
 
-            book.AddGrade(101);
-            
+            try
+            {
+                book.AddGrade(101);
+
+            }
+            catch (Exception ex)
+            {
+                Assert.Equal("Invalid grade: grade", ex.Message);
+            }
+
+
+
             Assert.Empty(book.grades);
         }
     }
