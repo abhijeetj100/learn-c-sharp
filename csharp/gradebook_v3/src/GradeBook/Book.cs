@@ -7,17 +7,63 @@ namespace GradeBook
     public class Book
     {
         // List<double> grades = new List<double>();
-        public List<double> grades;
-        public string Name;
+        private List<double> grades;
+
+
+        // properties
+        // // 1. Longhand syntax - the approach that required the most typings (keystrokes)
+
+        // private string name;
+
+        // public string Name
+        // {
+        //     get
+        //     {
+        //         return name;
+        //     }
+        //     set
+        //     {
+        //         if (!String.IsNullOrEmpty(value))
+        //         {
+        //             // for every set (setter) there will a implicit variable with the name "value"
+        //             name = value;
+        //         }
+        //         else
+        //         {
+        //             throw new Exception("Book name entered is either Empty or Null");
+        //         }
+        //     }
+        // }
+
+        // 2. Shorthand - auto property
+        public string Name
+        {
+            get;  // can only read name from outside the class
+            // private set; // cannot set property from outside the class
+            set;
+        }
+
+        // readonly - can either initialize or set in a constructor
+        readonly string category = "Science";
+
+        public const string CAT = "Science"; // generally as per convension, written as public and in uppercase letters
 
         static private int instanceCount = 0;
 
-        // Constructor
+        // Constructor - these can be overloaded too
         public Book(string name)
         {
+            category = "";
+            // CAT = ""; // more strict that readonly
             grades = new List<double>();
             Name = name;
             incrementCount();
+        }
+
+        public List<double> GetGrades()
+        {
+            // category = ""; // will give an error as its readonly.
+            return grades;
         }
 
         public void GetInputFromUser()
@@ -49,11 +95,11 @@ namespace GradeBook
                     var grade = double.Parse(input);
                     AddGrade(grade);
                 }
-                catch(ArgumentException ex)
+                catch (ArgumentException ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
-                catch(FormatException ex)
+                catch (FormatException ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
@@ -83,7 +129,9 @@ namespace GradeBook
             return instanceCount;
         }
 
-        public void AddLetterGrade(char letter)
+        // in function overloading, function signatures should differe
+        // Function signature - func name, parameters. Does NOT include the return type.
+        public void AddGrade(char letter)
         {
             switch (letter)
             {
@@ -143,6 +191,7 @@ namespace GradeBook
         {
             var result = GetStatistics();
 
+            Console.WriteLine($"For the book named: {Name}");
             Console.WriteLine($"The average grade is {result.Average:N1}");
             Console.WriteLine($"The highest grade is {result.High:N1}");
             Console.WriteLine($"The lowest grade is {result.Low:N1}");

@@ -26,6 +26,7 @@ namespace GradeBook
             book.AddGrade(90.5);
             book.AddGrade(77.5);
             System.Console.WriteLine($"There are {Book.getInstancesCount()} instances of Book class");
+            Console.WriteLine(Book.CAT);// to reach a const, you need to use class name not object. Similar to a static member.
             // book.grades.Add(101);// not allowed due to abstraction
 
             // book.AddGrade(121.4);
