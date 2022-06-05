@@ -7,6 +7,11 @@ namespace GradeBook.Tests
 {
 
     // basically these are types for functions
+    // delegates generally goes outisde the class since they itself are a type.
+    // You can instantiate a instance/object of this type.
+    //still, if needed, this can be put inside a class too.
+
+    // But generally, its outside the class.
     public delegate string WriteLogDelegate(string logMessage);
     public delegate int WriteSample(int number);
 
